@@ -20,3 +20,14 @@ function playRound(playerSelection, computerSelection) {
 
     return result;
 }
+
+function game() {
+    for (let i=0; i<5; i++) {
+        let playerSelection = getPlayerChoice();
+        let computerSelection = getComputerChoice();
+        let result = playRound(playerSelection, computerSelection);
+        if (result === "Win") console.log(`You Win! ${playerSelection} beats ${computerSelection}`);
+        else if (result === "Lose") console.log(`You Lose! ${computerSelection} beats ${playerSelection}`);
+        else if (result === "Tie") console.log(`You Tied! You both chose ${playerSelection}`);
+    }
+}
