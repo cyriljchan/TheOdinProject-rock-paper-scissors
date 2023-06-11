@@ -6,3 +6,8 @@ function getComputerChoice() {
         case 2: return "Scissors";
     }
 }
+
+function getPlayerChoice() {
+    let choice = prompt("Please type rock, paper, or scissors");
+    return (choice[0].toUpperCase() + choice.slice(1).toLowerCase());
+}
