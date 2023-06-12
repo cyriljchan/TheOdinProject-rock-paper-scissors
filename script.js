@@ -7,10 +7,10 @@ function getComputerChoice() {
   }
 }
 
-function getPlayerChoice() {
-  let choice = prompt("Please type rock, paper, or scissors");
-  return (choice[0].toUpperCase() + choice.slice(1).toLowerCase());
-}
+// function getPlayerChoice() {
+//   let choice = prompt("Please type rock, paper, or scissors");
+//   return (choice[0].toUpperCase() + choice.slice(1).toLowerCase());
+// }
 
 function playRound(playerSelection, computerSelection) {
   let result = (playerSelection === computerSelection) ? "Tie" :
@@ -32,13 +32,13 @@ function playRound(playerSelection, computerSelection) {
 //   }
 // }
 
-function game(){
-  const buttons = document.querySelectorAll('button');
-  buttons.forEach(
-    button => button.addEventListener('click', () => {
-      const playerSelection = button.textContent;
-      const computerSelection = getComputerChoice();
-      console.log(playRound(playerSelection, computerSelection));
-    })
-  );
+function game(e) {
+  const playerSelection = e.target.textContent;
+  const computerSelection = getComputerChoice();
+  console.log(playerSelection, computerSelection, playRound(playerSelection, computerSelection));
 }
+
+const buttons = document.querySelectorAll('button');
+buttons.forEach(
+  button => button.addEventListener('click', (e) => game(e))
+);
