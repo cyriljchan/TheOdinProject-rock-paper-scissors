@@ -35,10 +35,44 @@ function playRound(playerSelection, computerSelection) {
 function game(e) {
   const playerSelection = e.target.textContent;
   const computerSelection = getComputerChoice();
-  console.log(playerSelection, computerSelection, playRound(playerSelection, computerSelection));
+  return playRound(playerSelection, computerSelection);
+}
+
+function printRound(result, playerScore, computerScore) {
+  const body = document.querySelector('body');
+  const round = document.createElement('div');
+  round.classList.add("round");
+  round.textContent = `You ${result}! Player: ${playerScore} Computer: ${computerScore}`;
+  body.appendChild(round);
+}
+
+function printWinner(playerScore, computerScore) {
+  if (playerScore === 5 || computerScore === 5) {
+    const body = document.querySelector('body')
+    const winner = document.createElement('div');
+    winner.textContent = (playerScore === 5) ? "Player wins!" : "Computer wins!";
+    body.appendChild(winner);
+    
+    clearResults();
+  }
+}
+
+function clearResults() {
+  // clear the results after ~5s
 }
 
 const buttons = document.querySelectorAll('button');
+let playerScore = 0;
+let computerScore = 0;
+
 buttons.forEach(
-  button => button.addEventListener('click', (e) => game(e))
+  button => button.addEventListener('click', (e) => {
+    const result = game(e);
+    switch(result) {
+      case "Win": playerScore++; break;
+      case "Lose": computerScore++; break;
+    }
+    printRound(result, playerScore, computerScore);
+    printWinner(playerScore, computerScore);
+  })
 );
